@@ -1,6 +1,6 @@
 {
-    "name": "Daily Affirmations",
-    "short_name": "Affirmations",
+    "name": "Daily Uplift",
+    "short_name": "Uplift",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#f8f9fa",
