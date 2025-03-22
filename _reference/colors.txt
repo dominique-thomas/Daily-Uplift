@@ -1,8 +1,0 @@
-Light blue
-#11abff
-
-Purple
-#4769ff
-
-Deep Gray
-#333333
