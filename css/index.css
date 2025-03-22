@@ -46,7 +46,7 @@ h1, h2, h3 {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     gap: 0;
 }
 
@@ -89,9 +89,9 @@ h1, h2, h3 {
 }
 
 .affirmation-text {
-    font-size: 4rem; 
+    font-size: 3.2rem; 
     font-weight: bold;
-    margin-top: 30px;
+    margin-top: 15px;
     background: linear-gradient(to right, #4769ff, #11abff);
     color: transparent;
     -webkit-background-clip: text;
