@@ -163,7 +163,7 @@ const showAppInstallBtn = function(){
 // Prevent the install prompt from showing automatically
 const installInitalization = function() {
     
-    if ("beforeinstallprompt" in window) {
+    if (window.hasOwnProperty("beforeinstallprompt")){
         window.addEventListener("beforeinstallprompt", function(event) {
             event.preventDefault();
             deferredPrompt = event;
@@ -176,6 +176,8 @@ const installInitalization = function() {
     // Wait for the user to respond to the prompt
     installBtn.addEventListener("click", function() {
     
+        installBtn.style.display = "none";    
+        
         if (deferredPrompt) {
             deferredPrompt.prompt();
 
@@ -186,7 +188,7 @@ const installInitalization = function() {
                 } else {
                     console.log("User dismissed the A2HS prompt");
                 }
-                installBtn.style.display = "none";                
+                            
             }).catch(function(error) {
                 console.log("Error during prompt response:", error);
             });
