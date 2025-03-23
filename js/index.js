@@ -14,6 +14,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     themeToggle.addEventListener("click", toggleTheme);    
 
+    if (localStorage.getItem("appInstalled") === null) {
+        localStorage.setItem("appInstalled", "false");
+    }
+
     loadSavedTheme();
     setGreeting();    
     displayAffirmation();
@@ -120,6 +124,7 @@ const clearStorage = function() {
     localStorage.removeItem("usedAffirmations");
     localStorage.removeItem("lastAffirmationDate");
     localStorage.removeItem("theme");
+    localStorage.removeItem("appInstalled");
     console.log("Storage cleared!");
 }
 
@@ -142,19 +147,27 @@ if ("serviceWorker" in navigator) {
 }
 
 // Installation prompt
-window.addEventListener("beforeinstallprompt", function (e) {
-    
-    e.preventDefault();
-    deferredPrompt = e;
+window.addEventListener("beforeinstallprompt", function(event) {
+    event.preventDefault();
+    deferredPrompt = event;
+
+    if (!localStorage.getItem("appInstalled")) {
+        installBtn.style.display = "block";
+    }
+});
+
+// Wait for the user to respond to the prompt
+installBtn.addEventListener("click", function() {
+   
     deferredPrompt.prompt();
 
-    // Handle the user's response to the prompt
-    deferredPrompt.userChoice.then(function (choiceResult) {
+    deferredPrompt.userChoice.then(function(choiceResult) {
         if (choiceResult.outcome === "accepted") {
-            console.log("User accepted the prompt");
+            console.log("User accepted the A2HS prompt");
+            localStorage.setItem("appInstalled", "true");
         } else {
-            console.log("User dismissed the prompt");
+            console.log("User dismissed the A2HS prompt");
         }
-        deferredPrompt = null;
+        installBtn.style.display = "none";
     });
 });
