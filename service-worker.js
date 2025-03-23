@@ -1,11 +1,10 @@
 const CACHE_NAME = "daily-uplift-v1";
 const assetsToCache = [
-    "/",
-    "/index.html",
-    "/css/index.css",
-    "/js/index.js",
-    "/images/icon.png",
-    "/images/icon-512.png",
+    "/Daily-Uplift",
+    "/Daily-Uplift/css/index.css",
+    "/Daily-Uplift/js/index.js",
+    "/Daily-Uplift/images/icon.png",
+    "/Daily-Uplift/images/icon-512.png",
 ];
 
 self.addEventListener("install", (event) => {
