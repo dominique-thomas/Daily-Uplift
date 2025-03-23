@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     showAppInstallBtn();
+    installInitalization();
     loadSavedTheme();
     setGreeting();    
     displayAffirmation();
@@ -158,26 +159,28 @@ const showAppInstallBtn = function(){
     }
 }
 
-// Prevent the install prompt from showing automatically
-window.addEventListener("beforeinstallprompt", function(event) {
-    event.preventDefault();
-    deferredPrompt = event;
+const installInitalization = function() {
+    // Prevent the install prompt from showing automatically
+    window.addEventListener("beforeinstallprompt", function(event) {
+        event.preventDefault();
+        deferredPrompt = event;
 
-    showAppInstallBtn();
-});
-
-// Wait for the user to respond to the prompt
-installBtn.addEventListener("click", function() {
-   
-    deferredPrompt.prompt();
-
-    deferredPrompt.userChoice.then(function(choiceResult) {
-        if (choiceResult.outcome === "accepted") {
-            console.log("User accepted the A2HS prompt");
-            localStorage.setItem("appInstalled", "true");
-        } else {
-            console.log("User dismissed the A2HS prompt");
-        }
-        installBtn.style.display = "none";
+        showAppInstallBtn();
     });
-});
+
+    // Wait for the user to respond to the prompt
+    installBtn.addEventListener("click", function() {
+    
+        deferredPrompt.prompt();
+
+        deferredPrompt.userChoice.then(function(choiceResult) {
+            if (choiceResult.outcome === "accepted") {
+                console.log("User accepted the A2HS prompt");
+                localStorage.setItem("appInstalled", "true");
+            } else {
+                console.log("User dismissed the A2HS prompt");
+            }
+            installBtn.style.display = "none";
+        });
+    });
+}
