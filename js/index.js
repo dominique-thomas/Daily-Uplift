@@ -17,6 +17,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     themeToggle.addEventListener("click", toggleTheme);    
 
+    if (localStorage.getItem("installPromptDismissed") === null) {
+        localStorage.setItem("installPromptDismissed", "false");
+    }
+
     if (localStorage.getItem("appInstalled") === null) {
         localStorage.setItem("appInstalled", "false");
     }
@@ -155,6 +159,7 @@ if ("serviceWorker" in navigator) {
 // Prevent the install prompt from showing automatically
 const installInitalization = function() {
 
+    const appInstalled = JSON.parse(localStorage.getItem("appInstalled"));
     const isDismissed = JSON.parse(localStorage.getItem("installPromptDismissed"));
 
     window.addEventListener("beforeinstallprompt", function(event) {
