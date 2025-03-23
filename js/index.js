@@ -163,21 +163,17 @@ const showAppInstallBtn = function(){
 // Prevent the install prompt from showing automatically
 const installInitalization = function() {
     
-    if (window.hasOwnProperty("beforeinstallprompt")){
-        window.addEventListener("beforeinstallprompt", function(event) {
-            event.preventDefault();
-            deferredPrompt = event;
-            showAppInstallBtn();
-        });
-    } else {
-        installBtn.style.display = "none";	
-    }
+    window.addEventListener("beforeinstallprompt", function(event) {
+        event.preventDefault();
+        deferredPrompt = event;
+        showAppInstallBtn();
+    });
 
     // Wait for the user to respond to the prompt
     installBtn.addEventListener("click", function() {
     
         installBtn.style.display = "none";    
-        
+
         if (deferredPrompt) {
             deferredPrompt.prompt();
 
