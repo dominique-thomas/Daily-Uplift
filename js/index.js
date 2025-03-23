@@ -155,6 +155,8 @@ const showAppInstallBtn = function(){
 	const isInstalled = JSON.parse(localStorage.getItem("appInstalled"));	
     if (!isInstalled) {
         installBtn.style.display = "block";	
+    }else {
+        installBtn.style.display = "none"; 
     }
 }
 
