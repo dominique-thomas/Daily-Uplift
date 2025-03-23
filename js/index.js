@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("appInstalled", "false");
     }
 
-    showAppInstallBtn();
+
     installInitalization();
     loadSavedTheme();
     setGreeting();    
