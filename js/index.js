@@ -5,7 +5,9 @@ const themeToggle = document.getElementById("themeToggle");
 const greetingEl = document.getElementById("greeting");
 const affirmationEl = document.getElementById("affirmation");
 const defaultAffirmation = "You are worthy of love and happiness!";
+const installBtn = document.getElementById("installBtn");
 let deferredPrompt; 
+
 
 //--------------------------
 // Function Delcarations
