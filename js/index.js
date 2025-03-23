@@ -8,7 +8,6 @@ const defaultAffirmation = "You are worthy of love and happiness!";
 const installBtn = document.getElementById("installBtn");
 let deferredPrompt; 
 
-
 //--------------------------
 // Function Delcarations
 //--------------------------
@@ -161,12 +160,16 @@ const showAppInstallBtn = function(){
 
 // Prevent the install prompt from showing automatically
 const installInitalization = function() {
-    window.addEventListener("beforeinstallprompt", function(event) {
-        event.preventDefault();
-        deferredPrompt = event;
-                      alert('called beforeinstallprompt')
-        showAppInstallBtn();
-    });
+    
+    if ("beforeinstallprompt" in window) {
+        window.addEventListener("beforeinstallprompt", function(event) {
+            event.preventDefault();
+            deferredPrompt = event;
+            showAppInstallBtn();
+        });
+    } else {
+        installBtn.style.display = "none";	
+    }
 
     // Wait for the user to respond to the prompt
     installBtn.addEventListener("click", function() {
@@ -183,10 +186,10 @@ const installInitalization = function() {
                 }
                 installBtn.style.display = "none";                
             }).catch(function(error) {
-                alert("Error during prompt response:", error);
+                console.log("Error during prompt response:", error);
             });
         }else{
-            alert('deferredPrompt undefined')
+            console.log("The prompt is undefined.");
         }
     });
 }
