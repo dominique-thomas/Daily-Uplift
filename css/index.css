@@ -4,7 +4,8 @@ body.light-mode {
     background-color: #f8f9fa;
     color: #212529;
     font-family: 'Quicksand', sans-serif;
-    
+    height: 100vh; 
+    overflow: hidden;    
 }
 
 body.dark-mode {
@@ -39,10 +40,8 @@ h1, h2, h3 {
     pointer-events: none; 
 }
 
-
 #main-content {
     text-align: center;
-    padding: 20px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -89,13 +88,15 @@ h1, h2, h3 {
 }
 
 .affirmation-text {
-    font-size: 3.2rem; 
-    font-weight: bold;
-    margin-top: 15px;
+    font-size: 2.8rem; 
+    font-weight: bold;   
     background: linear-gradient(to right, #4769ff, #11abff);
     color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
+
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .encouragement-text {
@@ -109,6 +110,19 @@ h1, h2, h3 {
     top: 20px; 
     right: 20px; 
     z-index: 999;
+}
+
+/* Media Queries */
+@media (max-width: 600px) {
+    .affirmation-text {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .affirmation-text {
+        font-size: 2rem; 
+    }
 }
 
 /* Animations */

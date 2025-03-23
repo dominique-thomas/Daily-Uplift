@@ -5,6 +5,7 @@ const themeToggle = document.getElementById("themeToggle");
 const greetingEl = document.getElementById("greeting");
 const affirmationEl = document.getElementById("affirmation");
 const defaultAffirmation = "You are worthy of love and happiness!";
+let deferredPrompt; 
 
 //--------------------------
 // Function Delcarations
@@ -16,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadSavedTheme();
     setGreeting();    
     displayAffirmation();
-    disableSplash();
+    //disableSplash();
 });
 
 // Disable the splash page
@@ -139,3 +140,21 @@ if ("serviceWorker" in navigator) {
         .then(() => console.log("Service Worker Registered"))
         .catch((error) => console.log("Service Worker Registration Failed:", error));
 }
+
+// Installation prompt
+window.addEventListener("beforeinstallprompt", function (e) {
+    
+    e.preventDefault();
+    deferredPrompt = e;
+    deferredPrompt.prompt();
+
+    // Handle the user's response to the prompt
+    deferredPrompt.userChoice.then(function (choiceResult) {
+        if (choiceResult.outcome === "accepted") {
+            console.log("User accepted the prompt");
+        } else {
+            console.log("User dismissed the prompt");
+        }
+        deferredPrompt = null;
+    });
+});
