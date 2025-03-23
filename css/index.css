@@ -113,23 +113,35 @@ h1, h2, h3 {
     z-index: 999;
 }
 
+#installSection {
+    display: flex;
+    justify-content: space-between; /* Ensures space between buttons, if needed */
+    align-items: center;
+}
 
 #installBtn {
-    position: fixed; 
-    bottom: 20px;
-    left: 50%; 
-    transform: translateX(-50%); 
+    margin-right: 10px; /* Space between the install and dismiss buttons */
     padding: 10px 20px;
     background-color: #4CAF50;
+    color: white;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer
+}
+
+  #dismissButton {
+    padding: 10px 20px;
+    background-color: #dc3545;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
-    z-index: 1010; 
-  }
+}
 
+#dismissButton:hover {
+    background-color: #c82333;
+}
 
 /* Media Queries */
 @media (max-width: 600px) {

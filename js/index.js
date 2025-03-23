@@ -5,6 +5,8 @@ const themeToggle = document.getElementById("themeToggle");
 const greetingEl = document.getElementById("greeting");
 const affirmationEl = document.getElementById("affirmation");
 const defaultAffirmation = "You are worthy of love and happiness!";
+const installSection = document.getElementById("installSection");
+const dismissButton = document.getElementById("dismissButton");
 const installBtn = document.getElementById("installBtn");
 let deferredPrompt; 
 
@@ -18,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (localStorage.getItem("appInstalled") === null) {
         localStorage.setItem("appInstalled", "false");
     }
-
 
     installInitalization();
     loadSavedTheme();
@@ -128,6 +129,7 @@ const clearStorage = function() {
     localStorage.removeItem("lastAffirmationDate");
     localStorage.removeItem("theme");
     localStorage.removeItem("appInstalled");
+    localStorage.removeItem("installPromptDismissed");
     console.log("Storage cleared!");
 }
 
@@ -149,38 +151,35 @@ if ("serviceWorker" in navigator) {
         .catch((error) => console.log("Service Worker Registration Failed:", error));
 }
 
-// Installation prompt
-const showAppInstallBtn = function(){
-
-	const isInstalled = JSON.parse(localStorage.getItem("appInstalled"));	
-    if (!isInstalled) {
-        installBtn.style.display = "block";	
-    }else {
-        installBtn.style.display = "none"; 
-    }
-}
 
 // Prevent the install prompt from showing automatically
 const installInitalization = function() {
-    
+
+    const isDismissed = JSON.parse(localStorage.getItem("installPromptDismissed"));
+
     window.addEventListener("beforeinstallprompt", function(event) {
         event.preventDefault();
         deferredPrompt = event;
-        showAppInstallBtn();
-    });
 
+        if (!isDismissed) {
+            installSection.style.display = "block";	
+        }else {
+            installSection.style.display = "none"; 
+        }
+    });
+  
     // Wait for the user to respond to the prompt
     installBtn.addEventListener("click", function() {
     
-        installBtn.style.display = "none";    
+        installSection.style.display = "none";    
 
         if (deferredPrompt) {
             deferredPrompt.prompt();
 
             deferredPrompt.userChoice.then(function(choiceResult) {
                 if (choiceResult.outcome === "accepted") {
-                    console.log("User accepted the A2HS prompt");
                     localStorage.setItem("appInstalled", "true");
+                    console.log("User accepted the A2HS prompt");
                 } else {
                     console.log("User dismissed the A2HS prompt");
                 }
@@ -192,4 +191,9 @@ const installInitalization = function() {
             console.log("The prompt is undefined.");
         }
     });
+
+    dismissButton.addEventListener("click", function() {
+        localStorage.setItem("installPromptDismissed", "true");
+        installSection.style.display = "none"; 
+    });    
 }
