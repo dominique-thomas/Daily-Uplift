@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("appInstalled", "false");
     }
 
+    showAppInstallBtn();
     loadSavedTheme();
     setGreeting();    
     displayAffirmation();
@@ -149,13 +150,16 @@ if ("serviceWorker" in navigator) {
 }
 
 // Installation prompt
-window.addEventListener("beforeinstallprompt", function(event) {
-    event.preventDefault();
-    deferredPrompt = event;
-
+const showAppInstallBtn = function(){
     if (!localStorage.getItem("appInstalled")) {
         installBtn.style.display = "block";
     }
+}
+
+// Prevent the install prompt from showing automatically
+window.addEventListener("beforeinstallprompt", function(event) {
+    event.preventDefault();
+    deferredPrompt = event;
 });
 
 // Wait for the user to respond to the prompt
