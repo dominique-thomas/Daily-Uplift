@@ -151,8 +151,10 @@ if ("serviceWorker" in navigator) {
 
 // Installation prompt
 const showAppInstallBtn = function(){
-    if (!localStorage.getItem("appInstalled")) {
-        installBtn.style.display = "block";
+
+	const isInstalled = JSON.parse(localStorage.getItem("appInstalled"));	
+    if (!isInstalled) {
+        installBtn.style.display = "block";	
     }
 }
 
