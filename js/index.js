@@ -162,6 +162,8 @@ const showAppInstallBtn = function(){
 window.addEventListener("beforeinstallprompt", function(event) {
     event.preventDefault();
     deferredPrompt = event;
+
+    showAppInstallBtn();
 });
 
 // Wait for the user to respond to the prompt
