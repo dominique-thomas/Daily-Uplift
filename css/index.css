@@ -115,12 +115,12 @@ h1, h2, h3 {
 
 #installSection {
     display: flex;
-    justify-content: space-between; /* Ensures space between buttons, if needed */
+    justify-content: center; 
     align-items: center;
 }
 
 #installBtn {
-    margin-right: 10px; /* Space between the install and dismiss buttons */
+    margin-right: 10px; 
     padding: 10px 20px;
     background-color: #4CAF50;
     color: white;
