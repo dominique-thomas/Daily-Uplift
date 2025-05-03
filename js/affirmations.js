@@ -106,5 +106,6 @@ const affirmations = [
     "I trust that everything happens for a reason and is for my highest good.",
     "I am deserving of all the love and respect I give to others.",
     "I choose to let go of fear and embrace love.",
-    "I trust that I am on the right path in life."
+    "I trust that I am on the right path in life.",
+    "Friends are irreplaceable! Stay happy."
 ];
