@@ -1,3 +1,9 @@
+/**
+ * Project: Daily Uplift
+ * Description: JavaScript functionality for delivering daily affirmations and handling user interaction.
+ * Author: Dominique Thomas (github.com/dominique-thomas)
+ * License: MIT
+ */
 //--------------------------
 // Global delcarations
 //--------------------------
