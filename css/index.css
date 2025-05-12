@@ -1,5 +1,9 @@
-
-/* Body */
+/* 
+  Project: Daily Uplift
+  Description: Styling for Daily Uplift, a web app offering daily affirmations.
+  Author: Dominique Thomas (github.com/dominique-thomas)
+  License: MIT
+*/
 body.light-mode {
     background-color: #f8f9fa;
     color: #212529;
