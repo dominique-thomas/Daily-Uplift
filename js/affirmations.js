@@ -1,7 +1,7 @@
 const affirmations = [
     "I am enough.",
     "I believe in myself.",
-    "I am stronger than you think.",
+    "I am stronger than I think.",
     "I am capable of great things.",        
     "Positivity attracts positivity.",
     "Challenges make me stronger.",
