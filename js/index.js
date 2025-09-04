@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
     loadSavedTheme();
     setGreeting();    
     displayAffirmation();
-    //disableSplash();
 });
 
 // Disable the splash page
@@ -140,7 +139,6 @@ const clearStorage = function() {
     localStorage.removeItem("theme");
     localStorage.removeItem("appInstalled");
     localStorage.removeItem("installPromptDismissed");
-    console.log("Storage cleared!");
 }
 
 // Testing & Debugging
